@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/stylesheets/style.css"></link>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="assets/javascripts/jquery.pagination.js"></script>
+    <title>News World</title>
+</head>
+<body>
+    <!-- Navbar Begin -->
+    <div class="web-nav">
+        <ul>
+            <li class="search"><a class="active" href="home.html">新闻检索</a></li>
+            <li class="analysis"><a href="analysis.html">热度分析</a></li>
+            <li class="wordcloud"><a href="worldcloud.html">新闻词云</a></li>
+        </ul>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Search Begin -->
+    <form target="myIframe" action="/home.html" class="form-search" method="GET">
+        <p class="choose">请选择查找类型：
+        <select name="type" class="select-type">
+            <option value="title">标题</option>
+            <option value="keywords">关键字</option>
+            <option value="source">新闻来源</option>
+        </select>
+        </p>
+        <p class="search">
+        <input class="form-text" type="text" name="text">
+        <input class="form-submit" type="submit" value="查询">
+        </p>
+    </form>
+    <!--    避免页面重新加载   -->
+    <iframe id="myIframe" class="myIframe" name="myIframe" style="display: none"></iframe>
+    <!-- Search End -->
+
+    
+    <!-- Result Begin -->
+    <div class="card" style="margin: 10px 0px">
+        <table width="100%" id="record2"></table>
+    </div>
+    <!-- Result End -->
+
+    <div>
+        <ul id="pagination">
+        </ul>
+    </div>
+</body>
+<script>
+    $(document).ready(function() {
+        $(".form-submit").click(function() {
+            var mytype = $(".select-type").val();
+            var mytext = $(".form-text").val();
+            // console.log("1111111111111--type: ",mytype)
+            // console.log("2222222222222--type: ",mytext)
+            var url = '/home.html?type=' + mytype + '&' + 'text=' + mytext;
+            $.get(url, function(data) {
+                var data_json = JSON.parse(data);
+                console.log("33333333333333", typeof(data))
+                $("#record2").empty();
+                $("#record2").append('<tr class="cardLayouthead"><td>url</td><td>source_name</td>' +
+                    '<td>title</td><td>author</td><td>publish_date</td></tr>');
+
+                for(let list of data_json){
+                    let table = '<tr class="cardLayout"><td>';
+                    Object.values(list).forEach(element => {
+                        console.log("5555",element )
+                        table += (element + '</td><td>');
+                    });
+                    console.log("44444444444",table)
+                    $("#record2").append(table + '</td></tr>');
+                }
+                 
+                // 获取数据数量
+                var data_length = data_json.length;
+                // 计算页码数
+                var max_num = 10;
+                var page_num = Math.ceil(data_length / max_num);
+                var page_html = '';
+                $('#pagination').empty();
+                for(let i=1; i<= page_num; i++){
+                    page_html += '<li class=\"page'+ i + '\">'+ i + '</li>'
+                }
+                $('#pagination').append(page_html)
+               
+
+                // for(let i=1; i<= page_num; i++){
+                //     var class_name = '.page' + i
+                //     $(class_name).click(function show(){
+
+                //     })
+                    
+                // }
+                
+            });
+        });
+    });
+</script>
+</html>

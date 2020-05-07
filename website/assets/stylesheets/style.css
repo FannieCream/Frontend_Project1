@@ -1,0 +1,151 @@
+body {
+  padding: 20px;
+  /* 
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+}
+
+a {
+  color: #00B7FF;
+}
+
+.web-nav {
+  width: 100%;
+  margin-bottom: 50px;
+  /* height: 50px; */
+  text-align: center;
+  background-color:#bebebe;
+}
+.web-nav ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+
+.web-nav li {
+  display: inline-block;
+}
+
+.web-nav a:link,a:visited{
+  display:block;
+  width:120px;
+  height: 50px;
+  line-height: 50px;
+  font-weight:bold;
+  color:#FFFFFF;
+  text-align:center;
+  padding:4px;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.web-nav a:hover,a:active{
+  /* text-decoration: underline; */
+  /* border-bottom: solid 1px #FFFFFF; */
+  background-color:#cc0000;
+}
+.active {
+  background-color:#cc0000;
+}
+
+.form-search {
+  text-align: center;
+}
+
+.choose {
+  font-size: 14px;
+  font-weight: bold;
+  margin: auto;
+  margin-bottom: 30px;
+}
+.select-type {
+  width: 130px;
+  height:40px;
+  padding: 5px;
+  margin: 0 50px 0 20px;
+  background-color: #F9F0DA;
+  border: 2px solid #324B4E;
+  border-radius: 20px;
+  
+  font-size: 14px;
+}
+
+.select-type:active{
+  border: none;
+}
+
+
+.form-text {
+  width: 200px;
+  height:40px;
+  border: 1px solid #324B4E;
+  background-color: #F9F0DA;
+  border-radius: 10px;
+  padding: 0 10px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.form-submit {
+  background-color: #B22222; 
+  width: 60px;
+  height:40px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  /* font-weight: bold; */
+  letter-spacing: 2px;
+}
+
+.cardLayout {
+  text-align: center;
+  font-size: 12px;
+}
+
+.cardLayouthead {
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+  color: #FFFFFF;
+  background-color: #bebebe;
+  height:50px;
+  text-align: center;
+}
+
+tr:nth-child(odd){
+  background-color: #F9F0DA;
+  color:black;
+  height:30px;
+}
+
+tr:nth-child(even){
+  background-color:rgb(150, 149, 149);
+  color:whitesmoke;
+  height:30px;
+}
+
+ul.pagination {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+ul.pagination li a.active {
+  background-color: #B22222;
+  color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
