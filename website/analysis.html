@@ -4,15 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css" ></link>
-    <title>News World</title>
+    <script src="assets/javascripts/echarts.js"></script>
+    <title>Analysis</title>
 </head>
 <body>
     <div class="web-nav">
         <ul>
             <li class="search"><a href="home.html">新闻检索</a></li>
             <li class="analysis"><a class="active" href="analysis.html">热度分析</a></li>
-            <li class="wordcloud"><a href="worldcloud.html">新闻词云</a></li>
+            <li class="wordcloud"><a href="wordcloud.html">新闻词云</a></li>
         </ul>
     </div>
+
+    <div id="chart" style="position:absolute; left:20% ; width:800px;height:400px;margin-bottom: 50px;">
 </body>
+<script>
+    var myChart = echarts.init(document.getElementById('chart'));
+
+    myChart.setOption(
+    {
+        baseOption: {
+            timeline: {
+                data: ['2020-05-01', '2020-05-04', '2020-05-07'],
+                bottom: -20
+            },
+            title: {
+                text: '新闻热度'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                name: "热度值",
+                type: 'value',
+                max: 0.2,
+                nameTextStyle: {
+                    fontSize: 14,
+
+                }
+
+            }],
+            yAxis: {
+                type: 'category',
+                name:"新闻主题",
+                nameTextStyle: {
+                    fontSize: 14,
+                    fontWeight: "bold",
+                }
+               
+            },
+            tooltip: {
+                show: true,
+                trigger: "item",
+
+            },
+
+            series: [
+                { // 系列二的一些其他配置
+                    type: 'bar',
+                    
+                }
+            ]
+        },
+        options: [
+            { // 这是'2020-05-01' 对应的 option
+                title: {
+                    text: '2020-05-01'
+                },
+
+                yAxis: [
+                    {
+                        type: "category",
+                        data: ["新增","龙德留","病毒","死亡","肺炎","美国","特朗普","疫情","新冠"]
+                    }
+                ],
+
+                series: [
+                    {
+                        data: [0.02739, 0.0287, 0.0439, 0.045, 0.0523, 0.0749, 0.0859, 0.1121, 0.1476, 0.1951]
+                    }, // 系列一的数据
+                   
+                ]
+            },
+            { // 这是'2020-05-04' 对应的 option
+                title: {
+                    text: '2020-05-04'
+                },
+                yAxis: [
+                    {
+                        type: "category",
+                        data: ["特朗普","SARS","Cov","病毒","APP","累计","确诊","疫情","新冠"]
+                    }
+                ],
+                series: [
+                    {
+                        data: [0.0300,0.0346, 0.0356, 0.0391, 0.0400, 0.0523, 0.0750, 0.0839,0.104, 0.1141]
+                    }, // 系列一的数据
+                ]
+            },
+            { // 这是'2020-05-07' 对应的 option
+                title: {
+                    text: '2020-05-07'
+                },
+                yAxis: [
+                    {
+                        type: "category",
+                        data: ["SARS","肺炎","病毒","虎门","大桥","澎湃","确诊","疫情","新冠"]
+                    }
+                ],
+                series: [
+                    {
+                        data:  [0.0414, 0.0414, 0.0439, 0.045, 0.0523, 0.0749, 0.0859, 0.0921, 0.0976, 0.1151]
+                    }, // 系列一的数据
+                ]
+            }
+        ]
+    }
+);
+    
+</script>
 </html>
